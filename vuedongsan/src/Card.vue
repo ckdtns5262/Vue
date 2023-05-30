@@ -1,0 +1,34 @@
+<template>
+   <div>
+    <img :src="원룸.image" class="room-img">
+    <h4 @click="send">{{원룸.title}}</h4>
+    <p>{{원룸.price}}</p>
+  </div>
+</template>
+
+<script>
+export default {
+    name : "Card",
+    props : {
+        원룸 : Object,
+    },
+    methods : {
+        send(){
+           this.$emit('openModal',this.원룸.id)
+        }
+    }
+}
+</script>
+
+<style>
+.room-img {
+  width:100%;
+  margin-top: 40px;
+}
+.x-icon {
+  margin-left:98%;
+  font-size: 30px;
+  cursor: pointer;
+  position: relative; 
+}
+</style>
