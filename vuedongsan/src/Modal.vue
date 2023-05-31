@@ -1,9 +1,10 @@
 <template>
-
+<Transition name="fade">
   <div class="black-bg" v-if="modalCheck == true">
     <div class="white-bg">
     <BIconX class="x-icon" @click="close"/>
       <img :src="원룸들[누른거].image" class="room-img">
+      <Discount/>
       <h4>Title : {{원룸들[누른거].title}}</h4>
       <p>Content :{{원룸들[누른거].content}}</p>
       <input @input="changeKeyword" /><!--@input=" month = $event.target.value"-->
@@ -15,12 +16,13 @@
       </select> -->
       <!-- <input type="range" min="1" max="12"> -->
       <p>{{month}}개월 선택함 : Price : {{원룸들[누른거].price * month}}원</p>
-      <Discount/>
     </div>
   </div>
+  </Transition>
 </template>
 <script>
 import {BIconX} from 'bootstrap-icons-vue'
+import Discount from './Discount.vue'
 
 export default {
  name : 'Modal',
@@ -67,11 +69,21 @@ export default {
 
 components: {
            BIconX,
+           Discount
         }
 }
 
 </script>
 
 <style>
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: all 1s;
+}
+.fade-enter-to{
+  opacity: 1;
+}
 
 </style>
