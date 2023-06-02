@@ -28,9 +28,14 @@ export default {
  name : 'Modal',
   data(){
     return {
-       month : "",
+       month : 0,
 
     }
+ },
+  beforeUpdate(){
+  if(this.month == 2) {
+    alert('2개월은 어렵네요')
+  }
  },
  watch : {
    month(input){
@@ -44,14 +49,13 @@ export default {
     } else if(input < 1){
       alert('최소 1개월부터 가능합니다')
       this.month = 1
-    }
+    } 
     // if(typeof(input) === 'string'){
     //   alert('숫자만 입력하세요')
     // } 
-
-
   },
  },
+
   methods : {
    close(){
     this.$emit('closeModal')

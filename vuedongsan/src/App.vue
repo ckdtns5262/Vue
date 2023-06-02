@@ -14,7 +14,7 @@
     <a v-for="(a,i) in menus" :key="i">{{a}}</a>
   </div>
 
-  <Discount v-if="showDiscount == true"/>
+  <Discount/>
 
 
 
@@ -39,9 +39,9 @@ import Discount from './Discount.vue'
 import Modal from './Modal.vue'
 import Card from './Card.vue'
 
-setInterval(()=>{
-  // 1초마다 내부 코드 실행됨
-}, 1000)
+// setInterval(()=>{
+//   // 1초마다 내부 코드 실행됨
+// }, 1000)
 
 
 
@@ -49,7 +49,6 @@ export default {
   name: 'App',
   data(){
     return {
-      showDiscount : true,
       원룸들오리진 : [...data],
       오브젝트 : {name : 'kim', age : 20},
       누른거 :  0,
@@ -97,9 +96,9 @@ export default {
     // 서버에서 데이터가져오는 코드
   },
   // mounted(){
-  //   setTimeout(()=>{
-  //     this.showDiscount = false
-  // },2000)
+  //  setInterval(()=>{
+      
+  //  },1000)
   // },
   components: {
     Discount : Discount,
