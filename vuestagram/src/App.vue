@@ -10,10 +10,22 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
+  <h4>안녕 {{$store.state.name}} {{$store.state.age}}</h4>
+  <button @click="이름변경()">버튼</button>
+  <button @click="나이변경(10)">버튼2</button>
+
+  <p>{{$store.state.more}}</p>
+  <button @click="$store.dispatch('getData')">더보기버튼</button>
+
+  <!-- <p>{{now2}}  {{카운터}}</p>
+  <button @click="카운터++">버튼</button> -->
+
+  <p>{{name}} {{내이름}} {{age}}</p>
+
   <Container :insdata = "insdata" :step="step" :imgUrl="imgUrl" @writeContent="작성한글=$event" :select="select"/>
 
   <button @click="more">더보기{{누른횟수}}</button>
-  
+
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile"/>
@@ -35,6 +47,8 @@
 import Container from './components/Container.vue'
 import data from './data'
 import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
+
 
 export default {
 
@@ -46,7 +60,8 @@ export default {
       step : 0,
       imgUrl : '',
       작성한글 : '',
-      select : ''
+      select : '',
+      카운터 : 0,
       
     }
   },
@@ -57,6 +72,9 @@ export default {
     });
   },
   methods : {
+    ...mapMutations(['setMore', 'like', '이름변경','나이변경'])
+
+  ,
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.누른횟수}.json`)
       .then((res)=>{
@@ -85,7 +103,6 @@ export default {
       //     alert(err)
       //   })
       // }
-     
     },
     upload(e){
      let file =  e.target.files
@@ -108,7 +125,22 @@ export default {
       // 왼쪽의 array에 자료집어넣어줌
       this.insdata.unshift(내게시물)
       this.step = 0;
-    }
+    },
+    // methods 함수는 사용할 때마다 실행됨
+    // now(){
+    //   return new Date()
+    // }
+  },
+  // 함수만드는 methods랑 동일 ( 사용해도 실행되지 않음) 처음 실행하고 값을 간직함 => 계산결과저장용 함수들
+  computed : {
+    //  now2(){ // 함수 () 버튼뺴고 써야함 꼭 return이 있어야함
+    //   return new Date()
+    // }
+    name(){
+      return this.$store.state.name
+    },
+    ...mapState(['name', 'age', 'more']),
+    ...mapState({ 내이름 :'name'}) // 다른이름으로 작명해서 쓰고 싶을때
   },
   components: {
     Container,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="step == 0">
-    <Post :insdata="a" v-for="(a,i) in insdata" :key="i" :select="select"/>
+    <Post :insdata="$store.state.insdata[i]" v-for="(a,i) in $store.state.insdata" :key="i" :select="select" :i="i"/>
     </div>
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
@@ -37,7 +37,6 @@ export default {
     name  : 'Container',
     data(){
         return {
-            insdata : this.insdata,
             필터목록 : Filter,
             select : ''
         }

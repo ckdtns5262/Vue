@@ -4,9 +4,10 @@
         <div class="profile" :style="{ backgroundImage : `url(${insdata.userImage})`}"></div>
         <span class="profile-name">{{insdata.name}}</span>
     </div>
-    <div :class="select" class="post-body" :style="{backgroundImage : `url(${insdata.postImage})`}"></div>
+    <div :class="select" class="post-body" @click="$store.commit('like',i)"
+    :style="{backgroundImage : `url(${insdata.postImage})`}"></div>
     <div class="post-content">
-        <p>{{insdata.likes}}</p>
+        <p>{{insdata.likes}} Likes</p>
         <p><strong>글쓴이아이디</strong>{{insdata.content}}</p>
         <p class="date">{{insdata.date}}</p>
     </div>
@@ -21,9 +22,14 @@ export default {
 
         }
     },
+    methods : {
+
+    },
     props : {
-        insdata : Array,
-        select : String
+        insdata : Object,
+        select : String,
+        i : Number
+
     }
 }
 </script>
