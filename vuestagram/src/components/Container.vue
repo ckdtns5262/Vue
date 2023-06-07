@@ -16,7 +16,6 @@
 
   </div>
   </div>
-
 <!-- 글작성페이지 -->
 <div v-if="step == 2">
   <div :class="select" class="upload-image" :style="{backgroundImage : `url(${imgUrl})`}"></div>
@@ -24,6 +23,13 @@
     <textarea @input="writing" class="write-box">write!</textarea>
   </div>
   </div>
+
+  <div v-if="step == 3">
+    <MyPage :one="1"/>
+  </div>
+
+
+
 </div>
 </template>
 
@@ -31,9 +37,11 @@
 import FilterBox from './FilterBox.vue'
 import Post from './Post.vue'
 import Filter from '../Filter'
+import MyPage from './MyPage.vue'
 
 export default {
     
+    // eslint false
     name  : 'Container',
     data(){
         return {
@@ -50,7 +58,7 @@ export default {
     components : {
         Post,
         FilterBox,
-        Filter
+        MyPage
     },
     props : {
         insdata : Array,

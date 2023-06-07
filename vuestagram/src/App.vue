@@ -10,21 +10,21 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <h4>안녕 {{$store.state.name}} {{$store.state.age}}</h4>
+  <!-- <h4>안녕 {{$store.state.name}} {{$store.state.age}}</h4>
   <button @click="이름변경()">버튼</button>
   <button @click="나이변경(10)">버튼2</button>
 
   <p>{{$store.state.more}}</p>
-  <button @click="$store.dispatch('getData')">더보기버튼</button>
+  <button @click="$store.dispatch('getData')">더보기버튼</button> -->
 
   <!-- <p>{{now2}}  {{카운터}}</p>
   <button @click="카운터++">버튼</button> -->
 
-  <p>{{name}} {{내이름}} {{age}}</p>
+  <!-- <p>{{name}} {{내이름}} {{age}}</p> -->
 
   <Container :insdata = "insdata" :step="step" :imgUrl="imgUrl" @writeContent="작성한글=$event" :select="select"/>
 
-  <button @click="more">더보기{{누른횟수}}</button>
+  <!-- <button @click="more">더보기{{누른횟수}}</button> -->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -57,7 +57,7 @@ export default {
     return {
       insdata : data,
       누른횟수 : 0,
-      step : 0,
+      step : 3,
       imgUrl : '',
       작성한글 : '',
       select : '',
@@ -72,9 +72,9 @@ export default {
     });
   },
   methods : {
-    ...mapMutations(['setMore', 'like', '이름변경','나이변경'])
+    // ...mapMutations(['setMore', 'like', '이름변경','나이변경'])
 
-  ,
+  
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.누른횟수}.json`)
       .then((res)=>{
@@ -139,12 +139,12 @@ export default {
     name(){
       return this.$store.state.name
     },
-    ...mapState(['name', 'age', 'more']),
+    ...mapState(['name', 'age']),
     ...mapState({ 내이름 :'name'}) // 다른이름으로 작명해서 쓰고 싶을때
   },
   components: {
     Container,
-    data
+
   }
 }
 </script>
